@@ -1,5 +1,6 @@
 import pandas
 from os import environ as env
+import sqlalchemy
 from sqlalchemy.orm import sessionmaker
 from dotenv import load_dotenv
 from utilities.PostgreSQL_connection_functions import connection2db
@@ -12,8 +13,8 @@ load_dotenv()
 pandas.options.mode.chained_assignment = None  # default='warn'
 
 #  create connection with PostgreSQL
-cnx = connection2db(env['PostgreSQL_host'], env['PostgreSQL_port'], env['PostgreSQL_user'],
-                    env['PostgreSQL_password'], env['PostgreSQL_db_name'])
+cnx = connection2db(env['PostgreSQL_host2'], env['PostgreSQL_port2'], env['PostgreSQL_user2'],
+                    env['PostgreSQL_password2'], env['PostgreSQL_db_name2'])
 
 #  create all declared tables inside DB
 #  if Tables already exist, it wont have any effect
@@ -21,6 +22,7 @@ Base.metadata.create_all(cnx)
 
 #  create session
 Session = sessionmaker(bind=cnx)
+s = Session()
 
 #  normally, we would get all_data as a product of both_repair_procedure function from DataTransformation part of our project.
 #  As our project is split into separate repositories we cannot directly use DataExtraction functions
@@ -28,10 +30,9 @@ Session = sessionmaker(bind=cnx)
 all_data = pandas.read_pickle('example_data.pkl')
 
 #  sending data to PostgreSQL
-update_tables(all_data, Session, JobOffer, Company, Jobsite, Location, Experience, Employment_type, Skill)
-stamp_expired(all_data, Session, JobOffer)
+update_tables(all_data, Session)
+# stamp_expired(all_data, Session)
 
 #  sending data to MongoDB
-check_update_or_create_MongoDB(all_data, env['mongoDB_host'], env['mongoDB_port'],
-                               env['mongoDB_db_name'], env['mongoDB_collection_name'])
-
+# check_update_or_create_MongoDB(all_data, env['mongoDB_host'], env['mongoDB_port'],
+#                                env['mongoDB_db_name'], env['mongoDB_collection_name'])
