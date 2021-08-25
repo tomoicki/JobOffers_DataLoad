@@ -9,6 +9,10 @@ from utilities.tables_declaration import *
 from utilities.update_MongoDB_procedure import check_update_or_create_MongoDB
 
 load_dotenv()
+pandas.set_option('display.max_columns', None)
+pandas.set_option('display.max_rows', None)
+pandas.set_option('display.width', None)
+pandas.set_option('display.max_colwidth', 100)
 
 pandas.options.mode.chained_assignment = None  # default='warn'
 
