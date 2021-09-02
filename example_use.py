@@ -4,8 +4,8 @@ import sqlalchemy
 from sqlalchemy.orm import sessionmaker
 from dotenv import load_dotenv
 from utilities.PostgreSQL_connection_functions import connection2db
-from utilities.data_insert import update_tables, stamp_expired
-from utilities.tables_declaration import *
+from utilities.PostgreSQL_data_insert import update_tables, stamp_expired
+from utilities.PostgreSQL_tables_declaration import *
 from utilities.update_MongoDB_procedure import check_update_or_create_MongoDB
 
 load_dotenv()

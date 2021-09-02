@@ -3,7 +3,7 @@ import sqlalchemy.orm
 import sqlalchemy.sql.schema
 from sqlalchemy import select
 import datetime
-from utilities.tables_declaration import *
+from utilities.PostgreSQL_tables_declaration import *
 
 
 def is_already_for_list_like(dataframe: pandas.DataFrame,
