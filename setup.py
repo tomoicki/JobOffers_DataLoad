@@ -17,5 +17,6 @@ setup(
         'shortuuid==1.0.1',
         'pymongo==3.12.0',
         'python-dotenv~=0.19.0',
+        'psycopg2==2.9.1',
     ],
 )
