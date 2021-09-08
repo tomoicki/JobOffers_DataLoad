@@ -3,10 +3,10 @@ from os import environ as env
 import sqlalchemy
 from sqlalchemy.orm import sessionmaker
 from dotenv import load_dotenv
-from utilities.PostgreSQL_connection_functions import connection2db
-from utilities.PostgreSQL_data_insert import update_tables, stamp_expired
-from utilities.PostgreSQL_tables_declaration import *
-from utilities.update_MongoDB_procedure import check_update_or_create_MongoDB
+from JobOffers_DataLoad.PostgreSQL_connection_functions import connection2db
+from JobOffers_DataLoad.PostgreSQL_data_insert import update_tables, stamp_expired
+from JobOffers_DataLoad.PostgreSQL_tables_declaration import *
+from JobOffers_DataLoad.update_MongoDB_procedure import check_update_or_create_MongoDB
 
 load_dotenv()
 pandas.set_option('display.max_columns', None)
