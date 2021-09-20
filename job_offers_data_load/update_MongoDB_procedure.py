@@ -1,5 +1,5 @@
 import pandas
-from JobOffers_DataLoad import MongoDB_connection_functions
+from job_offers_data_load import MongoDB_connection_functions
 import datetime
 import pymongo
 

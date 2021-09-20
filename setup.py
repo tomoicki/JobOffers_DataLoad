@@ -4,7 +4,7 @@ with open(file="README.md", mode="r") as readme_handle:
     long_description = readme_handle.read()
 
 setup(
-    name='JobOffers_DataLoad',
+    name='job_offers_data_load',
     version='0.0.1',
     description='Part that inserts data to MongoDB and PostgreSQL.',
     long_description=long_description,
