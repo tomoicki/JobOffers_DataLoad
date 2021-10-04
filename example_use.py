@@ -1,12 +1,11 @@
 import pandas
 from os import environ as env
-import sqlalchemy
 from sqlalchemy.orm import sessionmaker
 from dotenv import load_dotenv
-from job_offers_data_load.PostgreSQL_connection_functions import connection2db
-from job_offers_data_load.PostgreSQL_data_insert import update_tables, stamp_expired
-from job_offers_data_load.PostgreSQL_tables_declaration import *
-from job_offers_data_load.update_MongoDB_procedure import check_update_or_create_MongoDB
+from job_offers_data_load.postgre_sql_connection_functions import make_connection_to_postgresql
+from job_offers_data_load.postgre_sql_data_insert import update_tables, stamp_expired
+from job_offers_data_load.postgre_sql_tables_declaration import *
+from job_offers_data_load.update_mongo_db_procedure import check_update_or_create_MongoDB
 
 load_dotenv()
 pandas.set_option('display.max_columns', None)
@@ -17,8 +16,8 @@ pandas.set_option('display.max_colwidth', 100)
 pandas.options.mode.chained_assignment = None  # default='warn'
 
 #  create connection with PostgreSQL
-cnx = connection2db(env['PostgreSQL_host2'], env['PostgreSQL_port2'], env['PostgreSQL_user2'],
-                    env['PostgreSQL_password2'], env['PostgreSQL_db_name2'])
+cnx = make_connection_to_postgresql(env['PostgreSQL_host2'], env['PostgreSQL_port2'], env['PostgreSQL_user2'],
+                                    env['PostgreSQL_password2'], env['PostgreSQL_db_name2'])
 
 #  create all declared tables inside DB
 #  if Tables already exist, it wont have any effect

@@ -1,5 +1,5 @@
 import pandas
-from job_offers_data_load import MongoDB_connection_functions
+from job_offers_data_load import mongo_db_connection_functions
 import datetime
 import pymongo
 
@@ -9,7 +9,7 @@ def check_update_or_create_MongoDB(new_data: pandas.DataFrame,
                                    db_name: str, collection_name: str) -> None:
     """Checks if collection has any records, if not calls create_MongoDB, if yes calls update_MongoDB."""
     #  create connection with MongoDB
-    collection = MongoDB_connection_functions.connection_to_mongodb(host, port, db_name, collection_name)
+    collection = mongo_db_connection_functions.connection_to_mongodb(host, port, db_name, collection_name)
     if collection.estimated_document_count() == 0:
         create_MongoDB(new_data, collection)
     elif collection.estimated_document_count() > 0:
